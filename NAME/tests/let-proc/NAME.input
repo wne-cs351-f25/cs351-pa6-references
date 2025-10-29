@@ -1,0 +1,9 @@
+let
+    x = 1
+    f = proc(t,u)
+        {
+            set t = add1(t) ;
+            u
+        }
+in
+    .f(x, +(x,5))

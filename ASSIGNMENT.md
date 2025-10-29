@@ -32,26 +32,30 @@ in {
 a. **SET (call-by-value):**
 
 ```
-# Your answer here
+3
 ```
+*Explanation: In call-by-value, the value of x (3) is copied to the formal parameter. The set operation changes only the local copy, not the original variable x.*
 
 b. **REF (call-by-reference):**
 
 ```
-# Your answer here
+4
 ```
+*Explanation: In call-by-reference, the formal parameter references the same location as the actual parameter. The set operation modifies the original variable x.*
 
 c. **NAME (call-by-name):**
 
 ```
-# Your answer here
+4
 ```
+*Explanation: In call-by-name, the actual parameter expression is substituted for the formal parameter. Since we're passing a variable x, it behaves similarly to call-by-reference.*
 
 d. **NEED (call-by-need):**
 
 ```
-# Your answer here
+4
 ```
+*Explanation: In call-by-need (lazy evaluation with memoization), the actual parameter is evaluated once when first needed and cached. Since we're passing a variable, it behaves like call-by-reference for assignment.*
 
 #### Q2: Side Effects in Parameter Passing
 
@@ -70,26 +74,30 @@ in {
 a. **SET (call-by-value):**
 
 ```
-# Your answer here
+2
 ```
+*Explanation: The expression `set x = sub1(x)` is evaluated once before the call, setting x to 2 and passing 2 to the procedure. The procedure evaluates its parameter three times (all returning 2), then returns the last value (2). The outer x remains 2.*
 
 b. **REF (call-by-reference):**
 
 ```
-# Your answer here
+2
 ```
+*Explanation: A reference to the result of `set x = sub1(x)` is passed. The expression is evaluated once, setting x to 2. The procedure then evaluates this reference three times (all returning 2).*
 
 c. **NAME (call-by-name):**
 
 ```
-# Your answer here
+0
 ```
+*Explanation: The expression `set x = sub1(x)` is substituted for the formal parameter. Each time the parameter is evaluated in the procedure body, it re-evaluates `set x = sub1(x)`, decrementing x each time: first to 2, then to 1, then to 0.*
 
 d. **NEED (call-by-need):**
 
 ```
-# Your answer here
+2
 ```
+*Explanation: The expression `set x = sub1(x)` is evaluated once when first needed (setting x to 2), then the result is cached. Subsequent evaluations return the cached value (2).*
 
 ### Part 2: Implement Copy-In, Copy-Out (CICO)
 
@@ -211,9 +219,22 @@ Implement the actual copy-out functionality in the VarRef class.
 
 ## Deliverables
 
-1. Completed Q1 and Q2 evaluations in this file
-2. Modified CICO implementation with:
+1. ✅ Completed Q1 and Q2 evaluations in this file
+2. ✅ Modified CICO implementation with:
    - Updated `ref` file with VarRef class and copyOut methods
    - Updated `code` file with modified VarExp evalRef
    - Updated `val` file with copy-out logic in ProcVal apply
-3. All tests passing with correct CICO semantics
+3. ✅ All tests passing with correct CICO semantics
+
+### CICO Implementation Summary
+
+The CICO implementation has been successfully completed with the following modifications:
+
+1. **`ref` file**: Added `VarRef` class that implements copy-in/copy-out semantics and added `copyOut()` method to base `Ref` class
+2. **`code` file**: Modified `VarExp.evalRef()` to wrap references in `VarRef` for copy-in behavior
+3. **`val` file**: Modified `ProcVal.apply()` to call `copyOut()` on all references after procedure execution
+
+The implementation correctly evaluates the test case to 10, demonstrating proper CICO semantics where:
+- Parameters are copied in at call time
+- Local changes don't affect originals during execution
+- Values are copied back out upon procedure return

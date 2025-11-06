@@ -32,25 +32,25 @@ in {
 a. **SET (call-by-value):**
 
 ```
-# Your answer here
+3
 ```
 
 b. **REF (call-by-reference):**
 
 ```
-# Your answer here
+4
 ```
 
 c. **NAME (call-by-name):**
 
 ```
-# Your answer here
+4
 ```
 
 d. **NEED (call-by-need):**
 
 ```
-# Your answer here
+4
 ```
 
 #### Q2: Side Effects in Parameter Passing
@@ -70,25 +70,25 @@ in {
 a. **SET (call-by-value):**
 
 ```
-# Your answer here
+2
 ```
 
 b. **REF (call-by-reference):**
 
 ```
-# Your answer here
+2
 ```
 
 c. **NAME (call-by-name):**
 
 ```
-# Your answer here
+0
 ```
 
 d. **NEED (call-by-need):**
 
 ```
-# Your answer here
+2
 ```
 
 ### Part 2: Implement Copy-In, Copy-Out (CICO)
